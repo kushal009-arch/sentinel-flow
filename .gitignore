@@ -1,0 +1,13 @@
+# Ignore raw data and logs
+*.csv
+*.pcap
+*.log
+src/config.py
+# Ignore Python environment and cache
+__pycache__/
+*.py[cod]
+.env
+venv/
+
+# Ignore OS-specific metadata
+.DS_Store
