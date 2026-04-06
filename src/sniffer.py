@@ -13,11 +13,16 @@ def packet_callback(packet):
 		src_ip = packet[IP].src
 		dst_ip = packet[IP].dst
 		proto = packet[IP].proto
+		ttl = packet[IP].ttl
 
 		# Check if it also has a TCP Layer (Layer 4)
 		if packet.haslayer(TCP):
 			payload_size = len(packet[TCP].payload)
-			print(f"[TCP] {src_ip} --> {dst_ip} | Size: {payload_size} bytes")
+			flags = packet[TCP].flags
+			dport = packet[TCP].dport
+
+			print(f"[TCP] {src_ip} --> {dst_ip}:{dport} | TTL: {ttl} | Flags: {flags} | Size: {payload_size} bytes")
+
 		else:
 			print(f"[IP] {src_ip} --> {dst_ip} | Protocol: {proto}")
 
